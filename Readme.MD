@@ -50,7 +50,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
   remote_user: azureuser
   become: true
   tasks:
-    # Use apt module
+     Use apt module
     - name: Install docker.io
       apt:
         update_cache: yes
@@ -58,24 +58,24 @@ These files have been tested and used to generate a live ELK deployment on Azure
         name: docker.io
         state: present
 
-      # Use apt module
+       Use apt module
     - name: Install pip3
       apt:
         force_apt_get: yes
         name: python3-pip
         state: present
 
-      # Use pip module (It will default to pip3)
+       Use pip module (It will default to pip3)
     - name: Install Docker pyhon module
       pip:
         name: docker
         state: present
 
-      # Use command module
+       Use command module
     - name: Increase virtual memory
       command: sysctl -w vm.max_map_count=262144
 
-      # Use sysctl module
+       Use sysctl module
     - name: Use more memory
       sysctl:
         name: vm.max_map_count
@@ -83,14 +83,14 @@ These files have been tested and used to generate a live ELK deployment on Azure
         state: present
         reload: yes
 
-      # Use docker_container module
+       Use docker_container module
     - name: download and launch a docker elk container
       docker_container:
         name: elk
         image: sebp/elk:761
         state: started
         restart_policy: always
-        # Please list the ports that ELK runs on
+         Please list the ports that ELK runs on
         published_ports:
           -  5601:5601
           -  9200:9200
@@ -99,7 +99,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
         #9200 is elasticsearch
         #5044 is logstash
 
-      # Use systemd module
+       Use systemd module
     - name: Enable service docker on boot
       systemd:
         name: docker
@@ -113,29 +113,29 @@ These files have been tested and used to generate a live ELK deployment on Azure
   hosts: webservers
   become: yes
   tasks:
-    # Use command module
+     Use command module
   - name: download filebeat .deb file
     command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
 
-    # Use command module
+     Use command module
   - name: install filebeat .deb
     command: dpkg -i filebeat-7.6.1-amd64.deb
 
-    # Use copy module
+     Use copy module
   - name: drop in filebeat.yml
     copy:
       src: /etc/ansible/files/filebeat-config.yml
       dest: /etc/filebeat/filebeat.yml
 
-    # Use command module
+     Use command module
   - name: enable and configure system module
     command: filebeat modules enable system
 
-    # Use command module
+     Use command module
   - name: setup filebeat
     command: filebeat setup
 
-    # Use command module
+     Use command module
   - name: start filebeat service
     command: service filebeat start
 
@@ -152,33 +152,33 @@ These files have been tested and used to generate a live ELK deployment on Azure
   hosts: webservers
   become: true
   tasks:
-    # Use command module
+     Use command module
   - name: Download metricbeat
     command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
 
-    # Use command module
+     Use command module
   - name: install metricbeat
     command: dpkg -i metricbeat-7.6.1-amd64.deb
 
-    # Use copy module
+     Use copy module
   - name: drop in metricbeat config
     copy:
       src: /etc/ansible/files/metricbeat-config.yml
       dest: /etc/metricbeat/metricbeat.yml
 
-    # Use command module
+     Use command module
   - name: enable and configure docker module for metric beat
     command: metricbeat modules enable docker
 
-    # Use command module
+     Use command module
   - name: setup metric beat
     command: metricbeat setup
 
-    # Use command module
+     Use command module
   - name: start metric beat
     command: service metricbeat start
 
-    # Use systemd module
+     Use systemd module
   - name: enable service metricbeat on boot
     systemd:
       name: metricbeat
