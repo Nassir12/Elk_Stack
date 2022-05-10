@@ -6,7 +6,6 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _YAML____ file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file.
   - - name: Config Web VM with Docker
   hosts: webservers
   become: true
@@ -199,51 +198,50 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly available, in addition to restricting __inbound___ to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_ A load balancer intelligently distributes traffic from clients across multiple servers without the clients having to understand how many servers are in use or how they are configured. Because the load balancer sits between the clients and the servers it can enhance the user experience by providing additional security (DoS attack counter), performance, and resiliency.
+A load balancer intelligently distributes traffic from clients across multiple servers without the clients having to understand how many servers are in use or how they are configured. Because the load balancer sits between the clients and the servers it can enhance the user experience by providing additional security (DoS attack counter), performance, and resiliency.
 - What is the advantage of a jump box?
-- A jump box is a secure computer that all admins first connect to before launching any administrative task or use as an origination point to connect to other servers or untrusted environments.
+A jump box is a secure computer that all admins first connect to before launching any administrative task or use as an origination point to connect to other servers or untrusted environments.
 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _jumpbox provisional____ and system _network____.
-- _TODO: What does Filebeat watch for?_ large files of locations you specify 
-- _TODO: What does Metricbeat record?_ It collects metric data periodically from target servers this could be operating system metrics or monitor other beats and ELK stack itself.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _jumpbox provisional_and system _network_.
+ What does Filebeat watch for? large files of locations you specify 
+ What does Metricbeat record? It collects metric data periodically from target servers this could be operating system metrics or monitor other beats and ELK stack itself.
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
+
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| Web 1   | Webservers| 20.127.59.163|  Linux                |
-| Web 2    | Webserver| 20.127.59.163|    Linux              |
-| Elk Server| Monitoring|20.230.177.186|    Linux              |
+| Web 1   | Webservers| 20.127.59.163|  Linux         |
+| Web 2    | Webserver| 20.127.59.163|    Linux       |
+| Elk Server| Monitoring|20.230.177.186|    Linux     |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the _Jumpbox Provisional ___ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses.  My personal IP address
+ Add whitelisted IP addresses.  My personal IP address
 
 Machines within the network can only be accessed by _Jumpbox Provisional____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_ My personal Machince/ Jumpbox provisonal : 20.115.26.165
+Which machine did you allow to access your ELK VM? What was its IP address?_ My personal Machince/ Jumpbox provisonal : 20.115.26.165
 
 A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes             | MY personal IP  |
-|  Web 1        |     No                |         10.0.0.6           |
-|   Web 2       |     No                |         10.0.0.6            |
-|.  Elk    |.        No                 |.        My IP ; 5601/10.0.0.6 |
+| Jump Box | Yes            |        MY personal IP     |
+|  Web 1   |     No         |         10.0.0.6          |
+|   Web 2  |     No         |         10.0.0.6          |
+|  Elk     |        No      |      My IP ; 5601/10.0.0.6|
 
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_ Ansible was used to automate configuration of the ELK machine. Automating server provisioning can eliminate mistakes, and it also allows automation and sequential execution of independent steps.
+- Ansible was used to automate configuration of the ELK machine. Automating server provisioning can eliminate mistakes, and it also allows automation and sequential execution of independent steps.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
 - Installation of docker.io to ELK Machine
 - Installs pip3 to the ELK Machine
 - Installation of the docker python module
@@ -254,7 +252,7 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+
 |Web 1   | Webservers| 20.127.59.163|
 | Web 2    | Webserver| 20.127.59.164|  
 | Elk Server| Monitoring|20.230.177.186|    
@@ -276,7 +274,7 @@ SSH into the control node and follow the steps below:
 - Update the _configuration____ file to include...
 - Run the playbook, and navigate to __elk server's public IP __ to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
+
 - _Which file is the playbook? Where do you copy it?_ To your Web VM's
 - _Which file do you update to make Ansible run the playbook on a specific machine? Config Line.  How do I specify which machine to install the ELK server on versus which to install Filebeat on?_ Specified in the config file  
 - _Which URL do you navigate to in order to check that the ELK server is running?
